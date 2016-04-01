@@ -792,7 +792,14 @@ bool HTTPClient::sendHeader(const char * type) {
     }
 
     header += "\r\n"
-            "Host: " + _host + "\r\n"
+            "Host: " + _host;
+
+    if (_port > 0) {
+		String port = String(_port);
+		header += ":" + port;
+    }
+
+    header += "\r\n"
             "User-Agent: " + _userAgent + "\r\n"
             "Connection: ";
 
